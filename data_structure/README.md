@@ -1,1 +1,4 @@
-##大话数据结构
+## 大话数据结构
+---
++ [线性表 - 数组方式](http://github/KevinsBobo/book_code/blob/master/data_structure/01_list_01_array.c)
++ [线性表 - 单链表方式](http://github/KevinsBobo/book_code/blob/master/data_structure/01_list_02_link.c)
