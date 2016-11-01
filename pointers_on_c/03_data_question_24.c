@@ -1,9 +1,9 @@
-static int w = 5; /*static, the file*/
-extern int x; /*external, every where*/
+static int w = 5; /*static, internal*/
+extern int x; /*static, external*/
 
 static float
 func1(int a, int b, int c){
-	int c/*错误！与形参冲突*/, d, e = 1; /*this block*/
+	int c/*错误！与形参冲突*/, d, e = 1; /*none*/
 	{
 		int d, e, w;
 		{
