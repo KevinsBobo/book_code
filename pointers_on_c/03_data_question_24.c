@@ -1,4 +1,4 @@
-static int w = 5; /*static, internal*/
+static int w = 5; /*Storage Class: static, Linkage: internal*/
 extern int x; /*static, external*/
 
 static float
