@@ -8,4 +8,4 @@
 
 + [第三章 - 数据 - 练习题第24题](http://github.com/KevinsBobo/book_code/blob/master/pointers_on_c/03_data_question_24.c)
 
-+ [第五章 - 操作符和表达式 - 练习题第5题](http://github.com/KevinsBobo/book_code/blob/master/pointers_on_c/05_opeartors_exercises_5.c)
++ [第五章 - 操作符和表达式 - 练习题第5题](http://github.com/KevinsBobo/book_code/blob/master/pointers_on_c/05_operators_exercises_5.c)
