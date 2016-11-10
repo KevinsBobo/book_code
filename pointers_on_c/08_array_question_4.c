@@ -12,15 +12,16 @@
 #include <string.h>
 
 int test_palindrome(char buffer[]){
-	int front, rear;
-	// int *front, *rear;
-	front = 0;
-	// front = buffer;
-	rear = strlen(buffer) - 1;
-	// rear = buffer + strlen(buffer) - 1;
+	// int front, rear;
+	char *front, *rear;
+	// front = 0;
+	front = buffer;
+	// rear = strlen(buffer) - 1;
+	rear = buffer + strlen(buffer) - 1;
 	while(front < rear){
-		if(*(buffer + front) !=  *(buffer + rear))
-		// if(*front != *rear)
+		// if(*(buffer + front) !=  *(buffer + rear))
+		// if(*front++ != *rear--) //答案中解释如果采用这种方法将导致循环无法结束，但实际却正确的结束了
+		if(*front != *rear)
 			return 1;
 		front++;
 		rear--;
