@@ -15,3 +15,5 @@
 + [第七章 - 函数 - 练习题第6题](http://github.com/KevinsBobo/book_code/blob/master/pointers_on_c/07_functions_exercises_6.c)
 
 + [第八章 - 数组 - 问题第4题](http://github.com/KevinsBobo/book_code/blob/master/pointers_on_c/08_array_question_4.c)
+
++ [第九章 - 字符串 - 函数strtok](http://github.com/KevinsBobo/book_code/blob/master/pointers_on_c/09_str_function_strtok.c)
