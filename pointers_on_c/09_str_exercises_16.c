@@ -34,6 +34,7 @@
  *    然后继续将多余的符号替换为空格。此方法在效率和可读性上都比我写的好，
  *    因为我写的操作中必须提前找到小数点的位置，增加了机器执行的指令。
  * */
+
 int format( char *format_string,
 		char const *digit_string){
 	
