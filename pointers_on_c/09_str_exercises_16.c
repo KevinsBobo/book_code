@@ -43,13 +43,11 @@ int format( char *format_string,
 	
 	// 新建指针用于操作字符串，从而保存字符串初始指针
 	char *type   = format_string;
-	char *menoy  = digit_string; // 这里编译器警告指针digit_string内容为不可修改的
+	char *menoy;  //= digit_string; // 这里编译器警告指针digit_string内容为不可修改的
 	// 计算待格式化的字符串大小
 	int menoylen = strlen(digit_string);
 	// 用于保存格式字符串中 # 的数量
 	int typenumlen = 0;
-	// 将doll指针指向小数点的位置
-	char *doll = strchr(format_string, '.');
 	
 	// 计算格式字符串中 # 的数量
 	while(1){
@@ -69,23 +67,37 @@ int format( char *format_string,
 		return 0;
 	
 	// 将type和menoy指针分别只想对应的字符串末尾
+	// 更好的方法：
+	type  = format_string + strlen(format_string) - 1;
+	// 仍旧有警告
+	menoy = digit_string  + strlen(digit_string)  - 1;
+	/*
 	while(*type != '\0')
 		type++;
 	type -= 1;
 	while(*menoy != '\0')
 		menoy++;
 	menoy -= 1;
+	*/
 	
 	// 将格式字符串中的 # 替换为数字
-	while(menoy - digit_string >= 0){
+	while(menoy >= digit_string){
 		if(*type == '#')
 			*type-- = *menoy--;
-		else{
+		/*
+		 else{
 			*(--type) = *menoy--;
 			type--;
 		}
+		*/
+		// 更好地方法：
+		else
+			type--;
 	}
 
+	/*
+	// 将doll指针指向小数点的位置
+	char *doll = strchr(format_string, '.');
 	// 如果存在小数点，则检查小数点左边的值是否为 #
 	// 如果是则代表金额小于1，将小数点左右的 # 替换为 0
 	if(doll++ != NULL && *(doll - 2) == '#'){
@@ -101,6 +113,21 @@ int format( char *format_string,
 	while(type - format_string >= 0){
 		*type-- = ' ';
 	}
+	*/
+
+	// 更好地方法（将以上两块结合）：
+	
+	 while(type >= format_string){
+	 	if(*type == '.'){
+			char *doll = type + 1;
+			while(*doll == ' ')
+				*doll++ = '0';
+			*(type - 1) = '0';
+			type -= 2;
+		}
+		*type-- = ' ';
+	 }
+	 
 
 	return 1;
 }
