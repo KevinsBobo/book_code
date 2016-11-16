@@ -1,7 +1,31 @@
 #include <stdio.h>
 #include <string.h>
 
-void dollars(char *dest, char const *src){
+// 书中提供的效率高的解决方法
+void dollars(register char *dest, register char const *src){
+	if(dest == NULL || src == NULL)
+		return;
+
+	int menoylen = strlen(src);
+	*dest++ = '$';
+	
+	if(menoylen >= 3){
+		for(int i = menoylen - 2; i > 0; ){
+			*dest++ = *src++;
+			if(--i > 0 && i % 3 == 0)
+				*dest++ = ',';
+		}
+	}else
+		*dest++ = '0';
+	*dest++ = '.';
+	*dest++ = menoylen < 2 ? '0' : *src++;
+	*dest++ = menoylen < 1 ? '0' : *src;
+	*dest = '\0';
+
+}
+
+// 实现效果差的方法
+void my_dollars(char *dest, char const *src){
 	int menoylen = strlen(src);
 	strcpy(dest, "$");
 	if(menoylen == 0)
