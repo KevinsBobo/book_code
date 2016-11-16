@@ -19,3 +19,5 @@
 + [第九章 - 字符串 - 函数strtok](http://github.com/KevinsBobo/book_code/blob/master/pointers_on_c/09_str_function_strtok.c)
 
 + [第九章 - 字符串 - 练习题第15题](http://github.com/KevinsBobo/book_code/blob/master/pointers_on_c/09_str_exercises_15.c)
+
++ [第九章 - 字符串 - 练习题第16题](http://github.com/KevinsBobo/book_code/blob/master/pointers_on_c/09_str_exercises_16.c)
