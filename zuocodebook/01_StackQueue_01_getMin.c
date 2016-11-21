@@ -120,4 +120,6 @@ int main(){
 	testPop(&topnode, &stackmin, &e);
 	testPop(&topnode, &stackmin, &e);
 	testPop(&topnode, &stackmin, &e);
+
+	return 0;
 }
