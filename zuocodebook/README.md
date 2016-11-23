@@ -8,3 +8,5 @@
 + [第一章 - 栈和队列 - 用一个栈辅助实现另一个栈排序](http://github.com/KevinsBobo/book_code/blob/master/zuocodebook/01_StackQueue_05_sortStackByStack.c)
 
 + [第一章 - 栈和队列 - 用递归实现汉诺塔](http://github.com/KevinsBobo/book_code/blob/master/zuocodebook/01_StackQueue_06_hannoi_recursion.c)
+
++ [第一章 - 栈和队列 - 用栈实现汉诺塔](http://github.com/KevinsBobo/book_code/blob/master/zuocodebook/01_StackQueue_06_hannoi_stack.c)
