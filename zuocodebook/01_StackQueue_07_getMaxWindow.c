@@ -96,6 +96,12 @@ Elemtype dueuePopTail(Dueuetop *Dueue){
 	return e;
 }
 
+// 清空双队列
+void del(Dueuetop *Dueue){
+	while(Dueue->top != NULL)
+		dueuePop(Dueue);
+}
+
 /*
 * 技巧：
 * 1. 双队列队头存放当前窗口遇到的最大值下标
@@ -142,6 +148,7 @@ void getMaxWindows(int num, int const *buffer, int window){
 	}
 	printf("}\n");
 
+	del(&Dueue);
 }
 
 int main(){
