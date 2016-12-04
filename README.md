@@ -7,3 +7,5 @@
 ### [《程序员代码面试指南：IT名企算法与数据结构题目最优解》](http://github.com/KevinsBobo/book_code/tree/master/zuocodebook/)
 
 ### [《C++ Primer 第5版》](./cpp_primer)
+
+### [《算法笔记》](./algorithm_note)
