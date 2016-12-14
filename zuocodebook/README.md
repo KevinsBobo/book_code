@@ -14,3 +14,5 @@
 + [第一章 - 栈和队列 - 打印窗口最大值 - C](http://github.com/KevinsBobo/book_code/blob/master/zuocodebook/01_StackQueue_07_getMaxWindow.c)
 
 + [第一章 - 栈和队列 - 最大子矩阵 - C++](http://github.com/KevinsBobo/book_code/blob/master/zuocodebook/01_StackQueue_08_getMaxRecSize.cpp)
+
++ [第一章 - 栈和队列 - 最大值减去最小值小于或等于num的子数组数量 - C++](http://github.com/KevinsBobo/book_code/blob/master/zuocodebook/01_StackQueue_09_getChildrenArrNum.cpp)
