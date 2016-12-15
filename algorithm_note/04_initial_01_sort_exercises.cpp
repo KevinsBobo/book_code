@@ -168,12 +168,11 @@ int main(){
                 else
                     allstu[m].local_rank = m + 1 - (theStu - localtion_stu);
             }
-#endif
         }
-#ifdef USE_BOOK
-        // 书中的方法，在执行完所有的数据输入后对整个数据再进行一次排序
+        // 在执行完所有的数据输入后对整个数据再进行一次排序
         sort(allstu, allstu + theStu, cmp);
 #else
+        }
         // 我的方法，调用排序函数
         stuSort(allstu, theStu, localtion_num);
 #endif
