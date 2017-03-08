@@ -183,14 +183,21 @@ void threeNumSort(){
 }
 
 // 12. 判断是否为5、7的整数倍
-void fiveSeven(){
-	int nNum = 0;
-	printf("请输入一个数：");
-	scanf_s("%d" , &nNum);
-	if(nNum % 5 == 0 && nNum % 7 == 0)
-		printf("Yes\n");
-	else
-		printf("No\n");
+void mySwap(int *aNum , int *bNum){
+	if(*aNum > *bNum){
+		*aNum ^= *bNum;
+		*bNum ^= *aNum;
+		*aNum ^= *bNum;
+	}
+}
+void threeNumSort(){
+	int aNum , bNum , cNum;
+	printf("请输入三个数字：");
+	scanf_s("%d %d %d" , &aNum , &bNum , &cNum);
+	mySwap(&aNum , &bNum);
+	mySwap(&aNum , &cNum);
+	mySwap(&bNum , &cNum);
+	printf("排序后：%d %d %d\n" , aNum , bNum , cNum);
 }
 
 // 13. 简单运算
