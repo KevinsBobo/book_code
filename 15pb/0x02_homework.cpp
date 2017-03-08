@@ -5,10 +5,10 @@
 // 思考题第11题：打印基本数据类型所占内存大小
 void printTypeSize(){
 	printf("char: %lu, int: %lu, short: %lu, long: %lu, \
-               long long: %lu, float: %lu, double: %lu\n" , \
-               sizeof(char) , sizeof(int) , sizeof(short) , \
-               sizeof(long) , sizeof(long long) , sizeof(\
-               float) , sizeof(double));
+		      long long: %lu, float: %lu, double: %lu\n" , \
+			  sizeof(char) , sizeof(int) , sizeof(short) , \
+			  sizeof(long) , sizeof(long long) , sizeof(\
+			  float) , sizeof(double));
 }
 
 // 上机题：
@@ -175,14 +175,6 @@ void flowerNum(){
 }
 
 // 11. 将输入的三个数从小到大排序
-void threeNumSort(){
-	int aNum , bNum , cNum;
-	printf("请输入三个数字：");
-	scanf_s("%d %d %d" , &aNum , &bNum , &cNum);
-	
-}
-
-// 12. 判断是否为5、7的整数倍
 void mySwap(int *aNum , int *bNum){
 	if(*aNum > *bNum){
 		*aNum ^= *bNum;
@@ -198,6 +190,17 @@ void threeNumSort(){
 	mySwap(&aNum , &cNum);
 	mySwap(&bNum , &cNum);
 	printf("排序后：%d %d %d\n" , aNum , bNum , cNum);
+}
+
+// 12. 判断是否为5、7的整数倍
+void fiveSeven(){
+	int nNum = 0;
+	printf("请输入一个数：");
+	scanf_s("%d" , &nNum);
+	if(nNum % 5 == 0 && nNum % 7 == 0)
+		printf("Yes\n");
+	else
+		printf("No\n");
 }
 
 // 13. 简单运算
@@ -239,6 +242,7 @@ int main(){
 	// threeNumSort();
 	// fiveSeven();
 	// opeartion();
+
 	system("pause");
 	return 0;
 }
