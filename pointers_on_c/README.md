@@ -24,3 +24,4 @@
 
 + [第九章 - 字符串 - 练习题第17题](http://github.com/KevinsBobo/book_code/blob/master/pointers_on_c/09_str_exercises_17.c)
 
++ [第十二章 - 结构和指针 - 练习题第7题](http://github.com/KevinsBobo/book_code/blob/master/pointers_on_c/12_struct&pointer_exercises_7.c)
