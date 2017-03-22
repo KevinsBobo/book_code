@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+// 三、上机题
 // 2. 编写一个学生和教师数据输入和显示的函数
 class CPerson
 {
