@@ -58,6 +58,31 @@ void createBiTree(BiTree *tree){
     }
 }
 
+// 创建线索二叉树初始状态
+void createBiThrTree(BiThrTree *tree){
+    TElemType ch;
+    scanf("%c", &ch);
+    if(ch == '#')
+        *tree = NULL;
+    else{
+        *tree = (BiThrTree)malloc(sizeof(BiThrNode));
+        if(!*tree)
+            exit(1);
+        (*tree)->data = ch;
+        createBiThrTree(&((*tree)->lchild));
+        createBiThrTree(&((*tree)->rchild));
+    }
+}
+
+// 前序输出
+void echoThrTreeByPreOrder(BiThrTree tree){
+    if(tree == NULL)
+        return;
+    printf("%c ", tree->data);
+    echoThrTreeByPreOrder(tree->lchild);
+    echoThrTreeByPreOrder(tree->rchild);
+}
+
 // 二叉树线索化 - 转化为有序双向链表
 BiThrTree pre = NULL;
 void inThreading(BiThrTree p){
@@ -82,7 +107,83 @@ void inThreading(BiThrTree p){
     inThreading(p->rchild);
 }
 
+// 为线索二叉树增加头结点
+void addThrTreeHead(BiThrTree *t, BiThrTree p){
+    if(p == NULL)
+        return;
+
+    // 将头结点的左结点指针指向树的根结点
+    (*t)->lTag = Link;
+    (*t)->lchild = p;
+    // 遍历到最左侧子节点 - 中序遍历第一个结点
+    while(p->lchild != NULL)
+        p = p->lchild;
+    // 将中序遍历第一个结点的左结点指针指向头结点
+    p->lchild = *t;
+
+    // 遍历到最右侧子节点 - 中序遍历最后一个结点
+    while(p->rchild != NULL)
+        p = p->rchild;
+    // 将中序遍历最后一个结点的右结点指针指向头结点
+    p->rchild = *t;
+    // 将头结点右结点指针指向中序遍历最后一个结点
+    (*t)->rTag = Thread;
+    (*t)->rchild = p;
+}
+
+// 通过线索二叉树头结点 正向遍历中序二叉树
+void echoTreeByInOrder_Thr(BiThrTree t){
+    if(t == NULL)
+        return;
+
+    BiThrTree p;
+    // 将p指向根结点
+    p = t->lchild;
+    // 开始遍历
+    while(p != t){ // 遍历结束时 p == t
+        // 始终将p指向每颗子树最左边的结点 - 中序遍历的第一个结点
+        while(p->lTag == Link)
+            p = p->lchild;
+        
+        printf("%c ", p->data); // 打印每颗子树最左侧结点
+
+        // 按照中序遍历的顺序寻找下个结点，若下个右节点顺序不对则停止遍历
+        while(p->rTag == Thread && p->rchild != t){
+            p = p->rchild;
+            printf("%c ", p->data);
+        }
+        // 将指针指向右子树根结点，下次遍历则从右子树开始
+        p = p->rchild;
+    }
+}
+
+// 通过线索二叉树头节点 反向遍历中序二叉树
+void echoTreeByInOrder_Thr_Pre(BiThrTree t){
+    if(t == NULL)
+        return;
+
+    BiThrTree p;
+    // 将p指向根结点
+    while(p != t){ // 遍历结束时 p == t
+        // 始终将p指向每颗子树最右边的节点 - 中序遍历的最后一个节点
+        while(p->rTag == Link)
+            p = p->rchild;
+
+        printf("%c ", p->data); // 打印每颗子树最右侧节点
+
+        // 按照中序遍历的相反顺序寻找下个节点，若下个左节点顺序不对则停止遍历
+        while(p->lTag == Thread && p->lchild != t){
+            p = p->lchild;
+            printf("%c ", p->data);
+        }
+        // 将指针指向左子树根结点，下次遍历则从左子树开始
+        p = p->lchild;
+    }
+}
+
 int main(){
+    // 普通二叉树测试用例
+    /*
     BiTree myTree;
     printf("Input Tree (eg: AB#D##C##): ");
     createBiTree(&myTree);
@@ -91,6 +192,22 @@ int main(){
     echoTreeByInOrder(myTree);
     printf("\n");
     echoTreeByPostOrder(myTree);
+    printf("\n");
+    */
+
+    // 线索二叉树测试用例
+    BiThrTree myThrTree;
+    printf("Input Tree (eg: ABDH##I##EJ###CF##G##): ");
+    createBiThrTree(&myThrTree);
+    echoThrTreeByPreOrder(myThrTree);
+    printf("\n");
+    BiThrNode thrHeadNode;
+	BiThrTree ThrTreeHd = &thrHeadNode;
+    addThrTreeHead(&ThrTreeHd, myThrTree);
+	inThreading(ThrTreeHd);
+    echoTreeByInOrder_Thr(ThrTreeHd);
+    printf("\n");
+    echoTreeByInOrder_Thr_Pre(ThrTreeHd);
     printf("\n");
 
     return 0;
