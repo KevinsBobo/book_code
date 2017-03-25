@@ -19,7 +19,7 @@ void get_next(const String *T, int *nextArr){
     nextArr[0] = -1;
 
     int len = T->len;
-    while(i < len){
+    while(i < len - 1){ // 需要进行 len - 1 此比较
         // 逻辑关系
         if(j == -1){
             // j = -1 时就将 j 置向串首，将 i 往后推一位
@@ -46,6 +46,29 @@ void get_next(const String *T, int *nextArr){
 }
 
 /***************************************************
+获取改进版next数组：
+    将前缀中内容重复的位置在next数组中赋为同样的值
+    减少不必要的匹配
+***************************************************/
+void get_nextval(const String *T, int *nextArr){
+    int i = 0;
+    int j = -1;
+    nextArr[0] = -1;
+    while(i < T->len - 1){
+        if( j != -1 && T->text[i] != T->text[j])
+            j = nextArr[j];
+        else{
+            // 若当前字符与已存在的对应前缀字符不同
+            if(T->text[++i] != T->text[++j])
+                nextArr[i] = j; // 则当前的 j 为nextArr在i位置的值
+            else
+                nextArr[i] = nextArr[j]; // 否则将前缀字符的nextArr值赋给
+                                         // nextArr在i的位置
+        }
+    }
+}
+
+/***************************************************
 KMP 算法实现
     返回子串T在朱串S中第pos个字符串之后的位置
     若不存在，则返回 -1
@@ -55,10 +78,19 @@ int indexKMP(const String *S, const String *T, int pos = 0){
     int j = 0;
 
     int nextArr[255];
-    get_next(T, nextArr); // 获取 nextArr 回溯数组
 
 #ifdef DEBUG
+    get_next(T, nextArr); // 获取 nextArr 回溯数组
     // 打印 nextArr 数组
+    for(int i = 0; i < T->len; i++)
+        printf("%d ", nextArr[i]);
+    printf("\n");
+#endif
+
+    get_nextval(T, nextArr); // 获取改进版 nextArr 回溯数组
+
+#ifdef DEBUG
+    // 打印改进版 nextArr 数组
     for(int i = 0; i < T->len; i++)
         printf("%d ", nextArr[i]);
     printf("\n");
@@ -91,12 +123,12 @@ int indexKMP(const String *S, const String *T, int pos = 0){
 }
 
 int main(){
-    char S[] = "ababaaababa";
+    char S[] = "ababaaababaaabababaaaba";
     String Sstr;
     Sstr.len = strlen(S);
     Sstr.text = S;
 
-    char T[] = "abab";
+    char T[] = "ababaaaba";
     String Tstr;
     Tstr.len = strlen(T);
     Tstr.text = T;
