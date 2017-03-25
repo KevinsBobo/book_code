@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <malloc.h>
 
 // 普通二叉树
 typedef char TElemType;
@@ -66,6 +67,10 @@ void createBiThrTree(BiThrTree *tree){
         *tree = NULL;
     else{
         *tree = (BiThrTree)malloc(sizeof(BiThrNode));
+        (*tree)->lchild = NULL;
+        (*tree)->rchild = NULL;
+        (*tree)->lTag = Link;
+		(*tree)->rTag = Link;
         if(!*tree)
             exit(1);
         (*tree)->data = ch;
@@ -120,12 +125,14 @@ void addThrTreeHead(BiThrTree *t, BiThrTree p){
         p = p->lchild;
     // 将中序遍历第一个结点的左结点指针指向头结点
     p->lchild = *t;
+    p->lTag = Thread;
 
     // 遍历到最右侧子节点 - 中序遍历最后一个结点
     while(p->rchild != NULL)
         p = p->rchild;
     // 将中序遍历最后一个结点的右结点指针指向头结点
     p->rchild = *t;
+    p->rTag = Thread;
     // 将头结点右结点指针指向中序遍历最后一个结点
     (*t)->rTag = Thread;
     (*t)->rchild = p;
@@ -164,6 +171,7 @@ void echoTreeByInOrder_Thr_Pre(BiThrTree t){
 
     BiThrTree p;
     // 将p指向根结点
+    p = t->lchild;
     while(p != t){ // 遍历结束时 p == t
         // 始终将p指向每颗子树最右边的节点 - 中序遍历的最后一个节点
         while(p->rTag == Link)
@@ -203,8 +211,8 @@ int main(){
     printf("\n");
     BiThrNode thrHeadNode;
 	BiThrTree ThrTreeHd = &thrHeadNode;
+	inThreading(myThrTree);
     addThrTreeHead(&ThrTreeHd, myThrTree);
-	inThreading(ThrTreeHd);
     echoTreeByInOrder_Thr(ThrTreeHd);
     printf("\n");
     echoTreeByInOrder_Thr_Pre(ThrTreeHd);
