@@ -64,7 +64,7 @@
 #include <cstdio>
 #include <cstring>
 #include <algorithm>
-#include <sys/time.h>
+#include <time.h>
 
 // #define SHOW_TIME // 打印运行中产生的始终滴答累计数
 // #define NOT_PRINT // 不打印排序后的结果
